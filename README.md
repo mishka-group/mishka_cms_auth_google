@@ -16,7 +16,7 @@ Run `mix deps.get` and restart. The package registers itself with Mishka CMS thr
 ## Set up
 
 1. Make the app at the [Google Cloud console](https://console.cloud.google.com) (APIs & Services → Credentials → OAuth client ID, type **Web application**).
-2. Authorized redirect URI: `https://<your-site>/api/auth/user/google/callback`
+2. Authorized redirect URI: `https://<your-site>/api/auth/user/provider/callback`
 3. In Mishka CMS: **Settings → Security → Sign-in methods** → switch **Google** on. Paste the
    **Client ID** and **Client secret** into the fields that open under it, then **Save**.
 

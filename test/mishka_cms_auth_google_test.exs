@@ -5,10 +5,10 @@
 defmodule MishkaCmsAuthGoogleTest do
   use ExUnit.Case, async: true
 
-  test "is a sign-in provider for the core's google strategy" do
+  test "is a sign-in provider Assent speaks to" do
     assert MishkaCmsCore.Accounts.SignInProvider in behaviours(MishkaCmsAuthGoogle)
     assert MishkaCmsAuthGoogle.id() == "google"
-    assert MishkaCmsAuthGoogle.strategy() == :google
+    assert %{assent: Assent.Strategy.Google} = MishkaCmsAuthGoogle.oauth()
     assert MishkaCmsAuthGoogle.label() == "Google"
     assert %{path: "M" <> _, color: "text-" <> _} = MishkaCmsAuthGoogle.icon()
   end

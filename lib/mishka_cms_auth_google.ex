@@ -8,21 +8,23 @@ defmodule MishkaCmsAuthGoogle do
   started by `MishkaCmsAuthGoogle.Application`: installed, it adds Google to every site's Security tab →
   Sign-in methods, where each site switches it on and sets its keys.
 
-  Signing in with a Google account: the `google` strategy on `MishkaCmsCore.Accounts.User`, with an
-  OAuth client made in the Google Cloud console (APIs & Services → Credentials → OAuth client ID,
-  type "Web application"). Its authorized redirect URI is the site's
-  `MishkaCmsCore.Accounts.SignInProvider.callback_url/2`. Google says whether the email is verified,
-  and only a verified one signs in.
+  Signing in with a Google account: `Assent.Strategy.Google` through the core's one provider
+  strategy, with an OAuth client made in the Google Cloud console (APIs & Services → Credentials →
+  OAuth client ID, type "Web application"). Its authorized redirect URI is the site's
+  `MishkaCmsCore.Accounts.SignInProvider.callback_url/1`. Google says whether the email is
+  verified, and only a verified one signs in.
   """
 
   use MishkaCmsCore.Accounts.SignInProvider,
     id: "google",
-    strategy: :google,
     label: gettext_noop("Google"),
     priority: 10
 
   @client_id "auth.providers.google.client_id"
   @client_secret "auth.providers.google.client_secret"
+
+  @impl true
+  def oauth, do: %{assent: Assent.Strategy.Google}
 
   @impl true
   def icon,
@@ -38,7 +40,7 @@ defmodule MishkaCmsAuthGoogle do
       key(@client_id, gettext_noop("Google client ID"),
         description:
           gettext_noop(
-            "From the OAuth client made for this site in the Google Cloud console, type \"Web application\". Its redirect address is this site's address followed by /api/auth/user/google/callback."
+            "From the OAuth client made for this site in the Google Cloud console, type \"Web application\". Its redirect address is this site's address followed by /api/auth/user/provider/callback."
           )
       ),
       key(@client_secret, :secret, gettext_noop("Google client secret"),
