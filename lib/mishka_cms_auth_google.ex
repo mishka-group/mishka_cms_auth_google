@@ -23,8 +23,9 @@ defmodule MishkaCmsAuthGoogle do
   @client_id "auth.providers.google.client_id"
   @client_secret "auth.providers.google.client_secret"
 
+  # PKCE on top of the state check: Google's OpenID configuration lists S256.
   @impl true
-  def oauth, do: %{assent: Assent.Strategy.Google}
+  def oauth, do: %{assent: Assent.Strategy.Google, code_verifier: true}
 
   @impl true
   def icon,

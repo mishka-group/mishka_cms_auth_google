@@ -8,7 +8,7 @@ defmodule MishkaCmsAuthGoogleTest do
   test "is a sign-in provider Assent speaks to" do
     assert MishkaCmsCore.Accounts.SignInProvider in behaviours(MishkaCmsAuthGoogle)
     assert MishkaCmsAuthGoogle.id() == "google"
-    assert %{assent: Assent.Strategy.Google} = MishkaCmsAuthGoogle.oauth()
+    assert %{assent: Assent.Strategy.Google, code_verifier: true} = MishkaCmsAuthGoogle.oauth()
     assert MishkaCmsAuthGoogle.label() == "Google"
     assert %{path: "M" <> _, color: "text-" <> _} = MishkaCmsAuthGoogle.icon()
   end
