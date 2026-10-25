@@ -5,7 +5,7 @@
 defmodule MishkaCmsAuthGoogle do
   @moduledoc """
   A `mishka_installer` plugin on `"auth:providers"` (`MishkaCmsCore.Accounts.SignInProvider`),
-  started by `MishkaCmsAuthGoogle.Application`: installed, it adds Google to every site's Security tab →
+  started by MishkaCmsAuthGoogle.Application: installed, it adds Google to every site's Security tab →
   Sign-in methods, where each site switches it on and sets its keys.
 
   Signing in with a Google account: `Assent.Strategy.Google` through the core's one provider
